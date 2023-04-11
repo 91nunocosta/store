@@ -1,0 +1,3 @@
+sell TrivialDrive Oil User#123
+sell TrivialDrive Antifreeze User#123
+exit

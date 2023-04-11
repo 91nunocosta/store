@@ -1,0 +1,33 @@
+>
+sale:
+    id: 1
+    app: TrivialDrive
+    item: Oil
+    amount: €1
+    sender: User#123
+    receivers:
+        TrivialDriveDeveloper#2: €0.75
+        AptoideStore#1: €0.25
+
+balance:
+    User#123: €9.00
+    TrivialDriveDeveloper#2: €10.75
+    AptoideStore#1: €10.25
+
+>
+sale:
+    id: 2
+    app: TrivialDrive
+    item: Antifreeze
+    amount: €1.2
+    sender: User#123
+    receivers:
+        TrivialDriveDeveloper#2: €0.90
+        AptoideStore#1: €0.30
+    reward: €0.06
+balance:
+    User#123: €7.86
+    TrivialDriveDeveloper#2: €11.65
+    AptoideStore#1: €10.49
+
+>
