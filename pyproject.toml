@@ -1,15 +1,14 @@
 [tool.poetry]
 name = "appstore"
 version = "0.1.0"
-description = "AppStore"
+description = "App store"
 authors = ["Nuno Costa <91nunocosta@gmail.com>"]
 readme = "README.md"
-repository = "https://github.com/91nunocosta/appstore/"
+repository = "https://github.com/91nunocosta/store/"
 [tool.poetry.scripts]
-appstore = "appstore.cli:app"
+appstore = "appstore.cli:run"
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
-typer = {extras = ["all"], version = "^0.7.0"}
 [tool.poetry.group.lint]
 optional = true
 
@@ -17,6 +16,7 @@ optional = true
 pre-commit = "^2.15.0"
 mypy = "^1.0.0"
 pylint = "^2.16.1"
+radon = "^6.0.1"
 
 [tool.poetry.group.test]
 optional = true
@@ -35,3 +35,8 @@ tox = "^3.24.4"
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.pylint]
+max-line-length = 88
+disable = "unnecessary-ellipsis,too-few-public-methods,too-many-arguments"
