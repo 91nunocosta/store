@@ -1,24 +1,45 @@
-# AppStore
+# App Store
 
-AppStore
+Proof of Concept (PoC) for a mobile app store controller, supporting _sell_ operation.
 
 ## Installation
 
 ```bash
-pip install appstore
+pip install -e git+ssh://git@github.com/91nunocosta/store.git#egg=appstore
 ```
 
 ## Usage
 
-```python
->>> from appstore import fib
->>> fib(0)
-0
+Enter the `appstore` _Read-Eval-Print Loop (REPL) Command Line Interface (CLI)_,
+and type `help`.
+
+<!-- markdownlint-disable line-length -->
 
 ```
+appstore
+>help
+```
+<!-- markdownlint-enable line-length -->
 
-For more details, read the
-[documentation](https://91nunocosta.github.io/appstore/appstore.html).
+## Next steps
+
+The PoC focuses on app sales business logic, implemented in [`appstore`](./appstore/appstore.py)
+module.
+
+In a real world-scenario, some steps would likely follow:
+
+1. Implementing app persistence and distributed access.
+I.e., providing an `AppsDB` interface connected to a database.
+
+2. Implementing user persistence and distributed access.
+I.e., providing an `UsersDB` interface connected to a database.
+There could be a combination of DBMS.
+We could keep the purchases counter in a key-value memory DB as Redis.
+
+3. Implementing a full-fledged `AccountsController`.
+It likely implies connecting to external services.
+Such services could support functionalities such as currency exchange.
+They could accept accounts in many currencies and perform the _transferences_ accordingly.
 
 ## Development
 
@@ -29,10 +50,10 @@ If you want to test or change the source code, prepare your local environment.
 1. Clone the repository.
 
    ```bash
-   git clone git@github.com:91nunocosta/appstore.git
+   git clone git@github.com:91nunocosta/store.git
    ```
 
-2. Open the project directory.
+2. Change to the project directory.
 
    ```bash
    cd appstore
@@ -51,26 +72,21 @@ Chose the method that is more convenient to you, for example:
 4. Create a new virtual environment (managed by _poetry_) with the project dependencies.
 
    ```bash
-   poetry install --with dev
+   poetry install --with lint --with test --with cd
    ```
 
-5. Enter the virtual environment.
+5. Activate the virtual environment.
 
    ```bash
    poetry shell
    ```
 
-6. Install pre-commit verifications.
-
-   ```bash
-   pre-commit install -t pre-commit -t pre-push -t commit-msg
-   ```
-
 ### Pre-commit
 
-Pre-commit runs the linters and tests configured in
+Pre-commit runs the linters configured in
 [.pre-commit-config.yaml](./.pre-commit-config.yaml).
-You can check the _pre-commit_ phase locally:
+
+You can run it as follows:
 
 1. Prepare the development environment, as described in
 [**Preparing the development environment**](#preparing-the-development-environment).
@@ -83,8 +99,7 @@ pre-commit run --all-files
 
 ### Tests
 
-Tests are executed by [tox.ini](./tox.ini).
-You can check the _tox_ phase locally:
+You can execute all tests and test coverage with [tox.ini](./tox.ini).
 
 1. Prepare the development environment, as described in
 [**Preparing the development environment**](#preparing-the-development-environment).

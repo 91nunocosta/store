@@ -1,6 +1,4 @@
 ---
-# MD013/line-length - Line length
-MD013:
-  # Number of characters
+line-length:
   line_length: 88
-MD034: false
+fenced-code-language: false
