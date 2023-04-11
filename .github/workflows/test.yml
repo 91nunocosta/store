@@ -21,7 +21,6 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - '3.9'
           - '3.10'
           - '3.11'
     steps:
@@ -42,10 +41,4 @@ jobs:
           key: tox|${{ hashFiles('tox.ini')}}
 
       - name: Test package
-        run: tox
-
-      - name: Run codacy-coverage-reporter
-        uses: codacy/codacy-coverage-reporter-action@v1
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: coverage.xml
+        run: tox -r
