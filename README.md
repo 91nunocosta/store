@@ -1,5 +1,11 @@
 # App Store
 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![linting: pylint](https://img.shields.io/badge/linting-pylint-yellowgreen)](https://github.com/pylint-dev/pylint)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+[![Lint codebase](https://github.com/91nunocosta/store/actions/workflows/lint.yml/badge.svg)](https://github.com/91nunocosta/store/actions/workflows/lint.yml)
+[![Run tests](https://github.com/91nunocosta/store/actions/workflows/test.yml/badge.svg)](https://github.com/91nunocosta/store/actions/workflows/test.yml)
+
 Proof of Concept (PoC) for a mobile app store controller, supporting _sell_ operation.
 
 ## Installation
