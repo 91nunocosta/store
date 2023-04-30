@@ -18,11 +18,11 @@ class MaxKeyAccessor:
 
     >>> accessor = MaxKeyAccessor({1: 10, 2: 20, 4: 40})
     >>> accessor.get_max()
-    3, 30
+    40
     >>> accessor.get_max(limit=2)
-    2, 20
+    20
     >>> accessor.get_max(limit=4)
-    2, 20
+    40
 
     The access' time complexity is optimal:
         O(log(n))
