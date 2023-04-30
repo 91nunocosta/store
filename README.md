@@ -27,6 +27,14 @@ appstore
 ```
 <!-- markdownlint-enable line-length -->
 
+## Documentation
+
+See the internal API's documentation [here](https://91nunocosta.github.io/store/).
+
+The implementation includes the following classes:
+
+![UML Classes Diagram](./classes.svg)
+
 ## Next steps
 
 The PoC focuses on app sales business logic, implemented in [`appstore`](./appstore/appstore.py)
