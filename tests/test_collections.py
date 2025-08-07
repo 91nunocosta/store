@@ -17,6 +17,9 @@ def test_max_mapping() -> None:
     # equal to limit
     assert accessor.get_max(limit=40) == 4
 
+    # limit greater than all keys
+    assert accessor.get_max(limit=60) == 5
+
     # limit smaller than keys, without default
     with pytest.raises(KeyError):
         accessor.get_max(limit=5)

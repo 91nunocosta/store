@@ -1,4 +1,5 @@
 """Provides collection data structures."""
+from bisect import bisect_right
 from typing import Any, List, Mapping, Optional, Protocol, TypeVar
 
 
@@ -47,27 +48,15 @@ class MaxKeyAccessor:
             limit: The limit for the keys to consider.
 
         Returns:
-            The index maximum key in self._keys.
+            The index of the greatest key that is smaller than or equal to ``limit``.
+
+        The implementation uses :func:`bisect_right` to correctly handle cases where
+        ``limit`` is greater than all stored keys.
         """
-        i = 0
-        j = len(self._keys)
-        k = ((j - i) // 2) + i
-
-        while i < j:
-            if self._keys[k] == limit or (
-                k + 1 < len(self._keys) and self._keys[k] < limit < self._keys[k + 1]
-            ):
-                break
-
-            if self._keys[k] < limit:
-                i = k + 1
-
-            if self._keys[k] > limit:
-                j = k - 1
-
-            k = ((j - i) // 2) + i
-
-        return k
+        # ``bisect_right`` returns the insertion position which comes after any
+        # existing entries of ``limit``. Subtracting one gives the index of the
+        # rightmost value less than or equal to ``limit``.
+        return bisect_right(self._keys, limit) - 1
 
     def get_max(self, limit: Optional[K] = None, default: Optional[V] = None) -> V:
         """Get value for maximum key.
