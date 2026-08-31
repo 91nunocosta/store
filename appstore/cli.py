@@ -1,55 +1,16 @@
 """Provide the command line interface for the app store's purchases manager."""
 import os
 import textwrap
-from typing import Dict, List
 
 import appstore.accounts
-from appstore.apps import InMemoryAppsDB
-from appstore.appstore import AccountsController, AppsDB, AppStore, UsersDB
-from appstore.users import InMemoryUsersDB
+from appstore.appstore import AccountsController, AppStore
+from appstore.demo import APPS, APPSTORE_ID, INITIAL_BALANCE, ITEMS, USERS
+from appstore.demo import create_accounts as _create_accounts
+from appstore.demo import create_appstore as _create_appstore
 
 EXIT_CMDS = {"exit"}
 
 CUR = "€"
-
-APPSTORE_ID = "AptoideStore#1"
-INITIAL_BALANCE = 10.0
-APPS = ["TrivialDrive", "DiamondLegendDeveloper"]
-DEVS = ["TrivialDriveDeveloper#2", "DiamondLegendDeveloper"]
-ITEMS: List[Dict[str, float]] = [{"Oil": 1, "Antifreeze": 1.20}, {"5x_Diamonds": 2}]
-USERS = ["User#123"]
-
-
-def _create_accounts() -> AccountsController:
-    accounts = appstore.accounts.AccountsController()
-    for holder_id in DEVS + USERS + [APPSTORE_ID]:
-        accounts.deposit(INITIAL_BALANCE, holder_id)
-    return accounts
-
-
-def _create_apps() -> AppsDB:
-    appsdb = InMemoryAppsDB()
-    for app, dev, items in zip(APPS, DEVS, ITEMS):
-        appsdb.add_app(app_id=app, developer_id=dev, items=items)
-    return appsdb
-
-
-def _create_users() -> UsersDB:
-    usersdb = InMemoryUsersDB()
-    for user in USERS:
-        usersdb.add_user(user)
-    return usersdb
-
-
-def _create_appstore(accounts: AccountsController) -> AppStore:
-    return AppStore(
-        appstore_id=APPSTORE_ID,
-        commission=0.25,
-        accounts_controller=accounts,
-        appsdb=_create_apps(),
-        usersdb=_create_users(),
-        bonus_after_purchases={1: 0.05, 10: 0.10},
-    )
 
 
 def _sell(

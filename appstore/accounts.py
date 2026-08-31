@@ -97,6 +97,17 @@ class AccountsController:
         """
         return self._balances[holder_id]
 
+    def has_account(self, holder_id: str) -> bool:
+        """Checks whether an account exists for an account holder.
+
+        Args:
+            holder_id: The account holder identifier.
+
+        Returns:
+            Whether an account exists for the holder.
+        """
+        return holder_id in self._balances
+
     def _start_transaction(self) -> None:
         self._journal = []
 
