@@ -111,6 +111,9 @@ def create_app() -> FastAPI:
         Returns:
             The account's balance.
         """
+        if not accounts.has_account(holder_id):
+            raise HTTPException(status_code=404, detail=f"Couldn't find {holder_id}.")
+
         return BalanceResponse(
             holder_id=holder_id, balance=accounts.get_balance(holder_id)
         )

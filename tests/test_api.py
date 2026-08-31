@@ -91,6 +91,13 @@ def test_get_balance(client: TestClient) -> None:
     assert body["balance"] == 10.0
 
 
+def test_get_balance_given_unknown_account(client: TestClient) -> None:
+    """Ensure that an unknown account returns a 404 error."""
+    response = client.get("/accounts/WrongAccount/balance")
+    assert response.status_code == 404
+    assert "WrongAccount" in response.json()["detail"]
+
+
 def test_get_balance_after_sale(client: TestClient) -> None:
     """Ensure that the balance endpoint reflects the effect of a sale."""
     client.post(
