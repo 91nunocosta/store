@@ -27,6 +27,34 @@ appstore
 ```
 <!-- markdownlint-enable line-length -->
 
+### HTTP API
+
+The [`appstore.api`](./appstore/api.py) module exposes the same purchase logic
+through a [FastAPI](https://fastapi.tiangolo.com/) application, `appstore.api.app`.
+
+Serve it locally with [uvicorn](https://www.uvicorn.org/):
+
+```bash
+uvicorn appstore.api:app --reload
+```
+
+Then, sell an app item to a user:
+
+```bash
+curl -X POST http://127.0.0.1:8000/sales \
+  -H "Content-Type: application/json" \
+  -d '{"app_id": "TrivialDrive", "item": "Oil", "user_id": "User#123"}'
+```
+
+Or check an account's balance (note the `%23` percent-encoding for `#`):
+
+```bash
+curl http://127.0.0.1:8000/accounts/User%23123/balance
+```
+
+Interactive API docs are served at
+[`/docs`](http://127.0.0.1:8000/docs).
+
 ## Documentation
 
 See the internal API's documentation [here](https://91nunocosta.github.io/store/).
